@@ -51,6 +51,7 @@ case $INSTANCE_TYPE in
   mastodon) TEMPLATE=$MASTODON_TEMPLATE ;;
   pleroma) TEMPLATE=$PLEROMA_TEMPLATE ;;
   gotosocial|gts) TEMPLATE=$GTS_TEMPLATE ;;
+  misskey) TEMPLATE=$MISSKEY_TEMPLATE ;;
 esac
 
 echo $TEMPLATE >> $CSS_FILE
