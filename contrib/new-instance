@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-usage()
-{
+usage() {
   echo "Usage: $0 [ -t INSTANCE_TYPE ] URL"
   exit 2
 }
 
-set_variable()
-{
+set_variable() {
   local varname=$1
   shift
   if [ -z "${!varname}" ]; then
@@ -24,24 +22,28 @@ CSS_FILE="$ROOT_DIR/css/missing-instances.css"
 
 unset INSTANCE_URL INSTANCE_TYPE
 
-while getopts 't:?h' c
-do case $c in
+while getopts 't:?h' c; do
+  case $c in
   t) set_variable INSTANCE_TYPE $OPTARG ;;
-  h|?) echo $@; usage ;; esac
+  h | ?)
+    echo $@
+    usage
+    ;;
+  esac
 done
 
-shift $((OPTIND-1))
+shift $((OPTIND - 1))
 INSTANCE_URL=$@
 INSTANCE_NAME=$INSTANCE_URL
 
-res="${INSTANCE_NAME//[^.]}"
+res="${INSTANCE_NAME//[^.]/}"
 if [ ${#res} -gt 1 ]; then
   case $INSTANCE_NAME in
-    social*) INSTANCE_NAME=".${INSTANCE_NAME#"social"}" ;;
-    soc*) INSTANCE_NAME=".${INSTANCE_NAME#"soc"}" ;;
-    mastodon*) INSTANCE_NAME=".${INSTANCE_NAME#"mastodon"}" ;;
-    pleroma*) INSTANCE_NAME=".${INSTANCE_NAME#"pleroma"}" ;;
-    misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
+  social*) INSTANCE_NAME=".${INSTANCE_NAME#"social"}" ;;
+  soc*) INSTANCE_NAME=".${INSTANCE_NAME#"soc"}" ;;
+  mastodon*) INSTANCE_NAME=".${INSTANCE_NAME#"mastodon"}" ;;
+  pleroma*) INSTANCE_NAME=".${INSTANCE_NAME#"pleroma"}" ;;
+  misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
   esac
 fi
 
@@ -52,12 +54,13 @@ FRIENDICA_TEMPLATE=".status a[href^='https://${INSTANCE_URL}/'] .display-name::a
 MISSKEY_TEMPLATE=".status a[href^='https://${INSTANCE_URL}/'] .display-name::after{ padding:0 0 0 17px!important;height:var(--fh); font:var(--ff); background:var(--4),linear-gradient(90deg,#332 64%,transparent); text-shadow:#333 1px 1px,#333 -1px 1px,#333 1px -1px,#333 -1px -1px;color:#9c0!important; content:'${INSTANCE_NAME}'!important; white-space:var(--fp);margin:var(--f0);display:var(--fb);} .status__display-name[href^='https://${INSTANCE_URL}/'].muted::before, .notification__display-name[href^='https://${INSTANCE_URL}/']::before{ padding:0 18px 0 17px!important;vertical-align:var(--fv);height:var(--fh);line-height:var(--fl); font:var(--ff); background:var(--4),linear-gradient(90deg,#332 64%,transparent); text-shadow:#333 1px 1px,#333 -1px 1px,#333 1px -1px,#333 -1px -1px;color:#9c0!important; content:'${INSTANCE_NAME}'!important; white-space:var(--fp);margin:var(--f0);display:var(--fi);opacity:var(--fa);}"
 
 case $INSTANCE_TYPE in
-  mastodon) TEMPLATE=$MASTODON_TEMPLATE ;;
-  pleroma) TEMPLATE=$PLEROMA_TEMPLATE ;;
-  gotosocial|gts) TEMPLATE=$GTS_TEMPLATE ;;
-  misskey) TEMPLATE=$MISSKEY_TEMPLATE ;;
+mastodon) TEMPLATE=$MASTODON_TEMPLATE ;;
+pleroma) TEMPLATE=$PLEROMA_TEMPLATE ;;
+gotosocial | gts) TEMPLATE=$GTS_TEMPLATE ;;
+misskey) TEMPLATE=$MISSKEY_TEMPLATE ;;
 esac
 
-echo $TEMPLATE >> $CSS_FILE
-git add $CSS_FILE;git commit -m "Added $INSTANCE_URL"
+echo $TEMPLATE >>$CSS_FILE
+git add $CSS_FILE
+git commit -m "Added $INSTANCE_URL"
 exit 0
