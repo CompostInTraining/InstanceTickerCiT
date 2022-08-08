@@ -44,6 +44,7 @@ if [ ${#res} -gt 1 ]; then
   mastodon*) INSTANCE_NAME=".${INSTANCE_NAME#"mastodon"}" ;;
   pleroma*) INSTANCE_NAME=".${INSTANCE_NAME#"pleroma"}" ;;
   misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
+  fedi*) INSTANCE_NAME=".${INSTANCE_NAME#"fedi"}" ;;
   esac
 fi
 
