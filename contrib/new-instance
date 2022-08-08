@@ -34,12 +34,16 @@ shift $((OPTIND-1))
 INSTANCE_URL=$@
 INSTANCE_NAME=$INSTANCE_URL
 
-case $INSTANCE_NAME in
-  social*) INSTANCE_NAME=".${INSTANCE_NAME#"social"}" ;;
-  mastodon*) INSTANCE_NAME=".${INSTANCE_NAME#"mastodon"}" ;;
-  pleroma*) INSTANCE_NAME=".${INSTANCE_NAME#"pleroma"}" ;;
-  misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
-esac
+res="${INSTANCE_NAME//[^.]}"
+if [ ${#res} -gt 1 ]; then
+  case $INSTANCE_NAME in
+    social*) INSTANCE_NAME=".${INSTANCE_NAME#"social"}" ;;
+    soc*) INSTANCE_NAME=".${INSTANCE_NAME#"soc"}" ;;
+    mastodon*) INSTANCE_NAME=".${INSTANCE_NAME#"mastodon"}" ;;
+    pleroma*) INSTANCE_NAME=".${INSTANCE_NAME#"pleroma"}" ;;
+    misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
+  esac
+fi
 
 MASTODON_TEMPLATE=".status a[href^='https://${INSTANCE_URL}'] .display-name::after{ padding:0 0 0 17px!important;height:var(--fh); font:var(--ff); background:var(--2),linear-gradient(90deg,#46a 64%,transparent); text-shadow:#46a 1px 1px,#46a -1px 1px,#46a 1px -1px,#46a -1px -1px;color:#fff!important; content:'${INSTANCE_NAME}'!important; white-space:var(--fp);margin:var(--f0);display:var(--fb);} .status__display-name[href^='https://${INSTANCE_URL}/'].muted::before, .notification__display-name[href^='https://${INSTANCE_URL}/']::before{ padding:0 18px 0 17px!important;vertical-align:var(--fv);height:var(--fh);line-height:var(--fl); font:var(--ff); background:var(--2),linear-gradient(90deg,#46a 64%,transparent); text-shadow:#46a 1px 1px,#46a -1px 1px,#46a 1px -1px,#46a -1px -1px;color:#fff!important; content:'${INSTANCE_NAME}'!important; white-space:var(--fp);margin:var(--f0);display:var(--fi);opacity:var(--fa);}"
 PLEROMA_TEMPLATE=".status a[href^='https://${INSTANCE_URL}/'] .display-name::after{ padding:0 0 0 17px!important;height:var(--fh); font:var(--ff); background:var(--3),linear-gradient(90deg,#333 64%,transparent); text-shadow:#333 1px 1px,#333 -1px 1px,#333 1px -1px,#333 -1px -1px;color:#da5!important; content:'${INSTANCE_NAME}'!important; white-space:var(--fp);margin:var(--f0);display:var(--fb);} .status__display-name[href^='https://${INSTANCE_URL}/'].muted::before, .notification__display-name[href^='https://${INSTANCE_URL}/']::before{ padding:0 18px 0 17px!important;vertical-align:var(--fv);height:var(--fh);line-height:var(--fl); font:var(--ff); background:var(--3),linear-gradient(90deg,#333 64%,transparent); text-shadow:#333 1px 1px,#333 -1px 1px,#333 1px -1px,#333 -1px -1px;color:#da5!important; content:'${INSTANCE_NAME}'!important; white-space:var(--fp);margin:var(--f0);display:var(--fi);opacity:var(--fa);}"
