@@ -1,5 +1,6 @@
 :root {
     --gts:no-repeat top 0% left 0%/contain url('//compostintraining.github.io/InstanceTickerCiT/icons/gts.png');
+    --cit1:no-repeat top 0% left 0%/contain url('//compostintraining.github.io/InstanceTickerCiT/icons/cit1.png');
 }
 
 .status a[href^='https://kolektiva.social/'] .display-name::after{ padding:0 0 0 17px!important;height:var(--fh); font:var(--ff); background:var(--2),linear-gradient(90deg,#46a 64%,transparent); text-shadow:#46a 1px 1px,#46a -1px 1px,#46a 1px -1px,#46a -1px -1px;color:#fff!important; content:'kolektiva.social'!important; white-space:var(--fp);margin:var(--f0);display:var(--fb);} .status__display-name[href^='https://kolektiva.social/'].muted::before, .notification__display-name[href^='https://kolektiva.social/']::before{ padding:0 18px 0 17px!important;vertical-align:var(--fv);height:var(--fh);line-height:var(--fl); font:var(--ff); background:var(--2),linear-gradient(90deg,#46a 64%,transparent); text-shadow:#46a 1px 1px,#46a -1px 1px,#46a 1px -1px,#46a -1px -1px;color:#fff!important; content:'kolektiva.social'!important; white-space:var(--fp);margin:var(--f0);display:var(--fi);opacity:var(--fa);}
