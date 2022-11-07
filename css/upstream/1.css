@@ -1210,5 +1210,5 @@
  .status a[href^='https://twtr.plus/'] .display-name::after{ padding:0 0 0 17px!important;height:var(--fh); font:var(--ff); background:no-repeat top 0% left 0%/contain url('//34.si/x4'),linear-gradient(90deg,#268 64%,transparent); text-shadow:#268 1px 1px,#268 -1px 1px,#268 1px -1px,#268 -1px -1px;color:#fff!important; content:'twtr.plus'!important; white-space:var(--fp);margin:var(--f0);display:var(--fb);} .status__display-name[href^='https://twtr.plus/'].muted::before, .notification__display-name[href^='https://twtr.plus/']::before{ padding:0 18px 0 17px!important;vertical-align:var(--fv);height:var(--fh);line-height:var(--fl); font:var(--ff); background:no-repeat top 0% left 0%/contain url('//34.si/x4'),linear-gradient(90deg,#268 64%,transparent); text-shadow:#268 1px 1px,#268 -1px 1px,#268 1px -1px,#268 -1px -1px;color:#fff!important; content:'twtr.plus'!important; white-space:var(--fp);margin:var(--f0);display:var(--fi);opacity:var(--fa);}
 
 /* Size: 1.06 MB   */ 
-/* Time: 0.04 sec. */
+/* Time: 0.08 sec. */
 /* Miyon! */
