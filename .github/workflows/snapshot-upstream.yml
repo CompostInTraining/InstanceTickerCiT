@@ -50,3 +50,9 @@ jobs:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           commit_prefix: "[Workflow Commit] "
           commit_message: "Updated upstream CSS"
+
+      - name: Check output
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          head css/upstream/{0,1,2,3}.css
+          tail css/upstream/{0,1,2,3}.css
