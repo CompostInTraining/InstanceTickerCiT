@@ -21,7 +21,7 @@ jobs:
         run: |
           cd css/upstream
           curl -L https://inst.ance.tk/css/1.css -o 1.css.new
-          sed '/compose-form/d' 1.css.new > 1.css
+          sed '/compose-form/d;s/getting-started__/link-/' 1.css.new > 1.css
           rm 1.css.new
       - name: Commit changes
         uses: devops-infra/action-commit-push@master
