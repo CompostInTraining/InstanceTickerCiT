@@ -2,7 +2,9 @@ name: Snapshot upstream
 
 on:
   push:
-    branches: ['master']
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_dispatch:
 
 concurrency:
@@ -10,20 +12,39 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  snapshot:
+  snapshot-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Update upstream CSS
+      - name: Update upstream CSS 0
+        run: |
+          cd css/upstream
+          curl -L https://inst.ance.tk/css/0.css -o 0.css.new
+          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 0.css.new > 0.css
+          rm 0.css.new
+      - name: Update upstream CSS 1
         run: |
           cd css/upstream
           curl -L https://inst.ance.tk/css/1.css -o 1.css.new
           sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 1.css.new > 1.css
           rm 1.css.new
+      - name: Update upstream CSS 2
+        run: |
+          cd css/upstream
+          curl -L https://inst.ance.tk/css/2.css -o 2.css.new
+          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 2.css.new > 2.css
+          rm 2.css.new
+      - name: Update upstream CSS 3
+        run: |
+          cd css/upstream
+          curl -L https://inst.ance.tk/css/3.css -o 3.css.new
+          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 3.css.new > 3.css
+          rm 3.css.new
       - name: Commit changes
+        if: ${{ github.event_name != 'pull_request' }}
         uses: devops-infra/action-commit-push@master
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
