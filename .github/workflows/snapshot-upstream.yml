@@ -1,0 +1,31 @@
+name: Snapshot upstream
+
+on:
+  push:
+    branches: ['master', 'workflow-dev']
+  workflow_dispatch:
+
+concurrency:
+  group: 'snapshot-upstream'
+  cancel-in-progress: true
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Update upstream CSS
+        run: |
+          cd css/upstream
+          curl -L https://inst.ance.tk/css/1.css -o 1.css.new
+          sed '/compose-form/d' 1.css.new > 1.css
+          rm 1.css.new
+      - name: Commit changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          commit_prefix: "[Workflow Commit] "
+          commit_message: "Updated upstream CSS"
