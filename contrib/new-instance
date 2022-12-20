@@ -47,6 +47,7 @@ if [ ${#res} -gt 1 ]; then
   fedi*) INSTANCE_NAME=".${INSTANCE_NAME#"fedi"}" ;;
   akkoma*) INSTANCE_NAME=".${INSTANCE_NAME#"akkoma"}" ;;
   gts*) INSTANCE_NAME=".${INSTANCE_NAME#"gts"}" ;;
+  toots*) INSTANCE_NAME=".${INSTANCE_NAME#"toots"}" ;;
   esac
 fi
 
