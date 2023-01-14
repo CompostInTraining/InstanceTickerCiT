@@ -15,8 +15,7 @@ jobs:
   snapshot-update:
     runs-on: ubuntu-latest
     env:
-      #sed_string: '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d'
-      sed_string: 's/getting-started__/link-/;/Size:/d;/Time:/d'
+      sed_string: 's/getting-started__/link-/;/Size:/d;/Instances!/d'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
