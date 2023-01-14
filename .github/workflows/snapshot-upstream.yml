@@ -14,6 +14,9 @@ concurrency:
 jobs:
   snapshot-update:
     runs-on: ubuntu-latest
+    env:
+      #sed_string: '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d'
+      sed_string: 's/getting-started__/link-/;/Size:/d;/Time:/d'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,25 +26,25 @@ jobs:
         run: |
           cd css/upstream
           curl -sL https://inst.ance.tk/css/0.css -o 0.css.new
-          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 0.css.new > 0.css
+          sed $sed_string 0.css.new > 0.css
           rm 0.css.new
       - name: Update upstream CSS 1
         run: |
           cd css/upstream
           curl -sL https://inst.ance.tk/css/1.css -o 1.css.new
-          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 1.css.new > 1.css
+          sed $sed_string 1.css.new > 1.css
           rm 1.css.new
       - name: Update upstream CSS 2
         run: |
           cd css/upstream
           curl -sL https://inst.ance.tk/css/2.css -o 2.css.new
-          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 2.css.new > 2.css
+          sed $sed_string 2.css.new > 2.css
           rm 2.css.new
       - name: Update upstream CSS 3
         run: |
           cd css/upstream
           curl -sL https://inst.ance.tk/css/3.css -o 3.css.new
-          sed '/compose-form/d;s/getting-started__/link-/;/Size:/d;/Time:/d' 3.css.new > 3.css
+          sed $sed_string 3.css.new > 3.css
           rm 3.css.new
       - name: Commit changes
         if: ${{ github.event_name != 'pull_request' }}
