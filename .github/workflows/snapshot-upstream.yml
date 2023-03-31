@@ -24,25 +24,25 @@ jobs:
       - name: Update upstream CSS 0
         run: |
           cd css/upstream
-          curl -sL https://34.si/402/0.css -o 0.css.new
+          curl -sL https://34.si/330/0.css -o 0.css.new
           perl -pe 's/\.compose.+?(?:\})//'<0.css.new | sed $sed_string > 0.css
           rm 0.css.new
       - name: Update upstream CSS 1
         run: |
           cd css/upstream
-          curl -sL https://34.si/402/1.css -o 1.css.new
+          curl -sL https://34.si/330/1.css -o 1.css.new
           perl -pe 's/\.compose.+?(?:\})//'<1.css.new | sed $sed_string > 1.css
           rm 1.css.new
       - name: Update upstream CSS 2
         run: |
           cd css/upstream
-          curl -sL https://34.si/402/2.css -o 2.css.new
+          curl -sL https://34.si/330/2.css -o 2.css.new
           perl -pe 's/\.compose.+?(?:\})//'<2.css.new | sed $sed_string > 2.css
           rm 2.css.new
       - name: Update upstream CSS 3
         run: |
           cd css/upstream
-          curl -sL https://34.si/402/3.css -o 3.css.new
+          curl -sL https://34.si/330/3.css -o 3.css.new
           perl -pe 's/\.compose.+?(?:\})//'<3.css.new | sed $sed_string > 3.css
           rm 3.css.new
       - name: Commit changes
