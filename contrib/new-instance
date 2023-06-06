@@ -47,6 +47,7 @@ if [ ${#res} -gt 1 ]; then
   misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
   fedi*) INSTANCE_NAME=".${INSTANCE_NAME#"fedi"}" ;;
   akkoma*) INSTANCE_NAME=".${INSTANCE_NAME#"akkoma"}" ;;
+  ack*) INSTANCE_NAME=".${INSTANCE_NAME#"ack"}" ;;
   gts*) INSTANCE_NAME=".${INSTANCE_NAME#"gts"}" ;;
   toots*) INSTANCE_NAME=".${INSTANCE_NAME#"toots"}" ;;
   posts*) INSTANCE_NAME=".${INSTANCE_NAME#"posts"}" ;;
