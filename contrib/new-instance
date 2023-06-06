@@ -42,6 +42,7 @@ if [ ${#res} -gt 1 ]; then
   social*) INSTANCE_NAME=".${INSTANCE_NAME#"social"}" ;;
   soc*) INSTANCE_NAME=".${INSTANCE_NAME#"soc"}" ;;
   mastodon*) INSTANCE_NAME=".${INSTANCE_NAME#"mastodon"}" ;;
+  mas*) INSTANCE_NAME=".${INSTANCE_NAME#"mas"}" ;;
   pleroma*) INSTANCE_NAME=".${INSTANCE_NAME#"pleroma"}" ;;
   misskey*) INSTANCE_NAME=".${INSTANCE_NAME#"misskey"}" ;;
   fedi*) INSTANCE_NAME=".${INSTANCE_NAME#"fedi"}" ;;
