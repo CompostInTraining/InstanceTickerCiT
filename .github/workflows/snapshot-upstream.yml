@@ -59,3 +59,19 @@ jobs:
         run: |
           head css/upstream/{0,1,2,3}.css
           tail css/upstream/{0,1,2,3}.css
+  post-snapshot-upstream:
+    needs: snapshot-update
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'CompostInTraining',
+              repo: 'InstanceTickerCiT',
+              workflow_id: 'deploy.yml',
+              ref: 'master'
+            })
