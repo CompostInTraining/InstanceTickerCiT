@@ -1,0 +1,3 @@
+.link-footer::after {
+    width: unset;
+}
